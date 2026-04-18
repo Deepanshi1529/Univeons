@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -291,7 +292,7 @@ useEffect(() => {
                   {["Vision", "Contact", "Members"].map(item => (
 <a 
                       key={item} 
-href={item === "Vision" ? "vision.html" : item === "Contact" ? "#contact" : item === "Members" ? "/members" : "#"}
+href={item === "Vision" ? "/vision" : item === "Contact" ? "#contact" : item === "Members" ? "/members" : "#"}
                       onClick={() => setAboutOpen(false)}
                       className={`block px-5 py-2.5 text-sm font-medium transition-all duration-200 ${dark ? 'text-[#AFA9EC] hover:bg-[#7F77DD] hover:text-white' : 'text-gray-700 hover:bg-[#7F77DD] hover:text-white'}`}
                     >
@@ -323,7 +324,7 @@ href={item === "Vision" ? "vision.html" : item === "Contact" ? "#contact" : item
             {["Home", "Vision", "Contact", "Members", "Products"].map(item => (
               <a 
                 key={item} 
-                href={item === "Vision" ? "vision.html" : item === "Contact" ? "#contact" : item === "Members" ? "/members" : item === "Products" ? "/products" : "#"}
+                href={item === "Vision" ? "/vision" : item === "Contact" ? "#contact" : item === "Members" ? "/members" : item === "Products" ? "/products" : "#"}
                 onClick={() => setMenuOpen(false)}
                 className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}
               >
@@ -456,7 +457,7 @@ href={item === "Vision" ? "vision.html" : item === "Contact" ? "#contact" : item
                 <h4 className={`text-sm font-bold mb-5 font-roboto ${dark ? 'text-white' : 'text-gray-700'}`}>Quick Links</h4>
                 <div className="flex flex-col gap-3">
                   <a href="#" className={`text-sm transition-all duration-200 ${dark ? 'text-gray-300 hover:text-[#7F77DD] hover:translate-x-1' : 'text-gray-600 hover:text-[#7F77DD] hover:translate-x-1'}`}>Home</a>
-                  <a href="vision.html" className={`text-sm transition-all duration-200 ${dark ? 'text-gray-300 hover:text-[#7F77DD] hover:translate-x-1' : 'text-gray-600 hover:text-[#7F77DD] hover:translate-x-1'}`}>Vision</a>
+                  <a href="/vision" className={`text-sm transition-all duration-200 ${dark ? 'text-gray-300 hover:text-[#7F77DD] hover:translate-x-1' : 'text-gray-600 hover:text-[#7F77DD] hover:translate-x-1'}`}>Vision</a>
                   <a href="#" className={`text-sm transition-all duration-200 ${dark ? 'text-gray-300 hover:text-[#7F77DD] hover:translate-x-1' : 'text-gray-600 hover:text-[#7F77DD] hover:translate-x-1'}`}>Members</a>
                   <a href="#" className={`text-sm transition-all duration-200 ${dark ? 'text-gray-300 hover:text-[#7F77DD] hover:translate-x-1' : 'text-gray-600 hover:text-[#7F77DD] hover:translate-x-1'}`}>Products</a>
                 </div>

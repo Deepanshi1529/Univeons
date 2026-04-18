@@ -7,6 +7,7 @@ import App from './App.jsx'
 import Products from './products.jsx'
 import Members from './members.jsx'
 import Admin from './admin.jsx'
+import Vision from './Vision.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/products" element={<Products />} />
         <Route path="/members" element={<Members />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/vision" element={<Vision />} /> 
       </Routes>
     </BrowserRouter>
   </StrictMode>,
