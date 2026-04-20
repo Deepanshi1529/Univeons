@@ -273,11 +273,7 @@ useEffect(() => {
       <div className={`min-h-screen ${dark ? 'bg-[#080618]' : 'bg-[#f4f2ff]'}`}>
 
         {/* NAVBAR */}
-        <nav className={`sticky top-0 z-50 flex items-center justify-between h-[68px] px-[6%] ${dark ? 'bg-[#26215C] border-[#3C3489]' : 'bg-gray-200 border-gray-300'}`}>
-          <div className="flex items-center gap-2.5">
-            <img src={dark ? "/images/logos.png" : "/images/logo.png"} alt="Logo" className="h-8 w-auto" />
-          </div>
-
+        <nav className={`sticky top-0 z-50 flex items-center justify-end h-[68px] px-[6%] ${dark ? 'bg-[#26215C] border-[#3C3489]' : 'bg-gray-200 border-gray-300'}`}>
           <div className="hidden md:flex items-center gap-9">
             <a href="#" className={`text-lg font-medium ${dark ? 'text-white' : 'text-gray-800'} hover:text-[#7F77DD] transition-colors`}>Home</a>
             <div ref={dropRef} className="relative">
@@ -400,7 +396,7 @@ href={item === "Vision" ? "/vision" : item === "Contact" ? "#contact" : item ===
                   key={i} 
                   className={`rounded-2xl border p-[30px_26px] hover:-translate-y-1 hover:border-[#7F77DD] transition-all duration-300 cursor-default ${dark ? 'bg-[#26215C] border-[#3C3489]' : 'bg-white border-gray-200'}`}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex flex-col md:flex-row items-start gap-4">
                     <div className="flex-shrink-0">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${dark ? 'bg-[#3C3489] text-[#7F77DD]' : 'bg-[#7F77DD] text-white'}`}>
                         {icon}
@@ -411,7 +407,7 @@ href={item === "Vision" ? "/vision" : item === "Contact" ? "#contact" : item ===
                       <p className={`leading-relaxed text-base ${dark ? 'text-[#AFA9EC]' : 'text-gray-600'}`}>{desc}</p>
                     </div>
                     {image && (
-                      <img src={image} alt={title} className="w-56 h-56 object-cover rounded-lg flex-shrink-0" />
+                      <img src={image} alt={title} className="w-full md:w-56 h-56 object-cover rounded-lg flex-shrink-0 mt-4 md:mt-0" />
                     )}
                   </div>
                 </div>
@@ -429,8 +425,8 @@ href={item === "Vision" ? "/vision" : item === "Contact" ? "#contact" : item ===
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {[
-                { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>, title: "Email", sub: "For general inquiries and partnerships", info: "contact@univeons.com", link: false },
-                { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, title: "Location", sub: "Univeons EdTech Pvt Ltd, BML Munjal University, 67th Milestone, NH 48, Kapriwas, Haryana", info: "Get Directions →", link: true },
+                { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>, title: "Email", sub: "For general inquiries and partnerships", info: "contact@edtech.com", link: false },
+                { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, title: "Location", sub: "EdTech Pvt Ltd, BML Munjal University, 67th Milestone, NH 48, Kapriwas, Haryana", info: "Get Directions →", link: true },
               ].map(({ icon, title, sub, info, link }, i) => (
                 <div key={i} className={`rounded-2xl p-[32px_28px] hover:-translate-y-1 hover:border-[#7F77DD] transition-all duration-300 cursor-pointer ${dark ? 'bg-[#26215C] border-[#3C3489]' : 'bg-white border-gray-300 shadow-lg hover:shadow-xl hover:border-purple-500'}`}>
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4.5 ${dark ? 'bg-[#3C3489] text-[#7F77DD]' : 'bg-[#7F77DD] text-white'}`}>{icon}</div>
@@ -448,10 +444,8 @@ href={item === "Vision" ? "/vision" : item === "Contact" ? "#contact" : item ===
           <div className="max-w-[1200px] mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
               <div className="hidden sm:block">
-                <div className="flex items-center gap-2.5 mb-4">
-<img src={dark ? "/images/logos.png" : "/images/logo.png"} alt="Logo" className="h-8 w-auto" />
-                </div>
-                <p className={`leading-relaxed text-sm ${dark ? 'text-gray-300' : 'text-gray-600'}`}>Univeons EdTech Pvt Ltd</p>
+
+                  <p className={`leading-relaxed text-sm ${dark ? 'text-gray-300' : 'text-gray-600'}`}>EdTech Pvt Ltd</p>
               </div>
               <div className="sm:col-start-2">
                 <h4 className={`text-sm font-bold mb-5 font-roboto ${dark ? 'text-white' : 'text-gray-700'}`}>Quick Links</h4>
@@ -470,7 +464,7 @@ href={item === "Vision" ? "/vision" : item === "Contact" ? "#contact" : item ===
               </div>
             </div>
             <div className={`border-t py-5 text-center ${dark ? 'border-[#2d2760]' : 'border-gray-300'}`}>
-              <p className={`text-[13px] ${dark ? 'text-gray-400' : 'text-gray-500'}`}>© 2026 Univeons EdTech Pvt Ltd — All Rights Reserved.</p>
+              <p className={`text-[13px] ${dark ? 'text-gray-400' : 'text-gray-500'}`}>© 2026 EdTech Pvt Ltd — All Rights Reserved.</p>
               <a href="/admin" className={`text-[11px] mt-2 inline-block opacity-40 hover:opacity-100 ${dark ? 'text-gray-400' : 'text-gray-500'}`}>Admin</a>
             </div>
           </div>

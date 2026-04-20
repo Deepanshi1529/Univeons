@@ -91,7 +91,7 @@ const defaultMembers = [
   {
     name: "Dr. John Doe",
     role: "Founder & CEO",
-    desc: "Leading the vision and strategy of Univeons EdTech with 15+ years of experience in education technology."
+    desc: "Leading the vision and strategy of EdTech EdTech with 15+ years of experience in education technology."
   },
   {
     name: "Jane Smith",

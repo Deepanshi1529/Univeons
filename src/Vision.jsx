@@ -30,9 +30,22 @@ const LinkedInIcon = () => (
   </svg>
 );
 
+const MenuIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+);
+
 export default function Vision() {
   const [dark, setDark] = useState(true);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const dropRef = useRef(null);
   const navigate = useNavigate();
 
@@ -52,11 +65,7 @@ export default function Vision() {
     <div className={`min-h-screen ${dark ? "bg-[#080618]" : "bg-[#f4f2ff]"}`}>
 
       {/* NAVBAR */}
-      <nav className={`sticky top-0 z-50 flex items-center justify-between h-[68px] px-[6%] border ${dark ? "bg-[#26215C] border-[#3C3489]" : "bg-gray-200 border-gray-300"}`}>
-        <div className="flex items-center gap-2.5">
-          <img src={dark ? "/images/logos.png" : "/images/logo.png"} alt="Logo" className="h-8 w-auto" />
-        </div>
-
+      <nav className={`sticky top-0 z-50 flex items-center justify-end h-[68px] px-[6%] border ${dark ? "bg-[#26215C] border-[#3C3489]" : "bg-gray-200 border-gray-300"}`}>
         <div className="hidden md:flex items-center gap-9">
           <Link to="/" className={`text-lg font-medium transition-colors hover:text-[#7F77DD] ${dark ? "text-white" : "text-gray-800"}`}>Home</Link>
 
@@ -92,7 +101,29 @@ export default function Vision() {
             {dark ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
+
+        <button 
+          className={`md:hidden bg-transparent border-none cursor-pointer ${dark ? 'text-[#AFA9EC]' : 'text-gray-800'}`} 
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <CloseIcon/> : <MenuIcon/>}
+        </button>
       </nav>
+
+      {menuOpen && (
+        <div className={`border-b px-[6%] py-2 z-40 ${dark ? 'bg-[#1e1a4a] border-[#3C3489]' : 'bg-gray-200 border-gray-300'}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Home</Link>
+          <Link to="/vision" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Vision</Link>
+          <Link to="/members" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Members</Link>
+          <Link to="/products" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Products</Link>
+          <button 
+            onClick={() => { setDark(!dark); setMenuOpen(false); }}
+            className={`mt-3 border-none rounded-lg px-5 py-2.5 cursor-pointer text-sm font-medium flex items-center gap-2 ${dark ? 'bg-[#3C3489] text-[#AFA9EC]' : 'bg-purple-600 text-white'}`}
+          >
+            {dark ? <><SunIcon/> Switch to Light</> : <><MoonIcon/> Switch to Dark</>}
+          </button>
+        </div>
+      )}
 
       {/* MAIN CONTENT */}
       <section className={`px-[6%] py-[90px] ${dark ? "bg-[#080618]" : "bg-gray-50"}`}>
@@ -101,7 +132,7 @@ export default function Vision() {
           {/* Page Title */}
           <div className="text-center mb-12">
             <h2 className={`font-roboto font-extrabold text-[clamp(28px,3vw,42px)] mb-3.5 ${dark ? "text-white" : "text-gray-800"}`}>
-              ABOUT UNIVEONS
+              ABOUT EdTech
             </h2>
             <div className="w-12 h-[3.5px] bg-[#7F77DD] rounded mx-auto mb-4" />
             <p className={`text-xl mb-8 ${dark ? "text-[#AFA9EC]" : "text-gray-600"}`}>
@@ -180,10 +211,8 @@ export default function Vision() {
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
             <div className="hidden sm:block">
-              <div className="flex items-center gap-2.5 mb-4">
-                <img src={dark ? "/images/logos.png" : "/images/logo.png"} alt="Logo" className="h-8 w-auto" />
-              </div>
-              <p className={`leading-relaxed text-sm ${dark ? "text-gray-300" : "text-gray-600"}`}>Univeons EdTech Pvt Ltd</p>
+
+              <p className={`leading-relaxed text-sm ${dark ? "text-gray-300" : "text-gray-600"}`}>EdTech Pvt Ltd</p>
             </div>
             <div className="sm:col-start-2">
               <h4 className={`text-sm font-bold mb-5 font-roboto ${dark ? "text-white" : "text-gray-700"}`}>Quick Links</h4>
@@ -202,7 +231,7 @@ export default function Vision() {
             </div>
           </div>
           <div className={`border-t py-5 text-center ${dark ? "border-[#2d2760]" : "border-gray-300"}`}>
-            <p className={`text-[13px] ${dark ? "text-gray-400" : "text-gray-500"}`}>© 2026 Univeons EdTech Pvt Ltd — All Rights Reserved.</p>
+             <p className={`text-[13px] ${dark ? "text-gray-400" : "text-gray-500"}`}>© 2026 EdTech Pvt Ltd — All Rights Reserved.</p>
             <Link to="/admin" className={`text-[11px] mt-2 inline-block opacity-40 hover:opacity-100 ${dark ? "text-gray-400" : "text-gray-500"}`}>Admin</Link>
           </div>
         </div>

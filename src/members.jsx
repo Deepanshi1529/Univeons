@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 const SunIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>;
 const MoonIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M16 12a4 4 0 1 0-4 4 4 4 0 0 0 4-4M3 12a9 9 0 0 1 18 0 9 9 0 0 1-18 0M12 1v2m0 18v2m-5-5H2m18 0h-2m-2.93-7.07l-1.42 1.42m-9.9 9.9l-1.42 1.42m0-11.3l1.42 1.42m9.9 9.9l1.42 1.42"/></svg>;
 const ChevronDown = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>;
+const MenuIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
+const CloseIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
 
 export default function Members() {
   const [dark, setDark] = useState(true);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
@@ -16,7 +19,7 @@ export default function Members() {
       setMembers(JSON.parse(storedMembers));
     } else {
       setMembers([
-        { name: "Dr. John Doe", role: "Founder & CEO", desc: "Leading the vision and strategy of Univeons EdTech with 15+ years of experience in education technology." },
+         { name: "Dr. John Doe", role: "Founder & CEO", desc: "Leading the vision and strategy of EdTech EdTech with 15+ years of experience in education technology." },
         { name: "Jane Smith", role: "Chief Technology Officer", desc: "Overseeing all technical developments and innovations in our software solutions." },
         { name: "Alex Johnson", role: "Head of Operations", desc: "Managing day-to-day operations and ensuring seamless service delivery to our clients." }
       ]);
@@ -25,10 +28,7 @@ export default function Members() {
 
   return (
     <div className={`min-h-screen ${dark ? 'bg-[#080618]' : 'bg-[#f4f2ff]'}`}>
-      <nav className={`sticky top-0 z-50 flex items-center justify-between h-[68px] px-[6%] ${dark ? 'bg-[#26215C] border-[#3C3489]' : 'bg-gray-200 border-gray-300'} border`}>
-        <div className="flex items-center gap-2.5">
-          <img src={dark ? "/images/logos.png" : "/images/logo.png"} alt="Logo" className="h-8 w-auto" />
-        </div>
+      <nav className={`sticky top-0 z-50 flex items-center justify-end h-[68px] px-[6%] ${dark ? 'bg-[#26215C] border-[#3C3489]' : 'bg-gray-200 border-gray-300'} border`}>
         <div className="hidden md:flex items-center gap-9">
           <Link to="/" className={`text-lg font-medium ${dark ? 'text-white' : 'text-gray-800'} hover:text-[#7F77DD] transition-colors`}>Home</Link>
           <div className="relative">
@@ -48,14 +48,36 @@ export default function Members() {
             {dark ? <SunIcon/> : <MoonIcon/>}
           </button>
         </div>
+
+        <button 
+          className={`md:hidden bg-transparent border-none cursor-pointer ${dark ? 'text-[#AFA9EC]' : 'text-gray-800'}`} 
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <CloseIcon/> : <MenuIcon/>}
+        </button>
       </nav>
+
+      {menuOpen && (
+        <div className={`border-b px-[6%] py-2 z-40 ${dark ? 'bg-[#1e1a4a] border-[#3C3489]' : 'bg-gray-200 border-gray-300'}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Home</Link>
+          <Link to="/vision" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Vision</Link>
+          <Link to="/members" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Members</Link>
+          <Link to="/products" onClick={() => setMenuOpen(false)} className={`block text-base font-medium py-3 border-b ${dark ? 'text-[#AFA9EC] border-[#2d2760] hover:text-white' : 'text-gray-700 border-gray-200 hover:bg-purple-600 hover:text-white'}`}>Products</Link>
+          <button 
+            onClick={() => { setDark(!dark); setMenuOpen(false); }}
+            className={`mt-3 border-none rounded-lg px-5 py-2.5 cursor-pointer text-sm font-medium flex items-center gap-2 ${dark ? 'bg-[#3C3489] text-[#AFA9EC]' : 'bg-purple-600 text-white'}`}
+          >
+            {dark ? <><SunIcon/> Switch to Light</> : <><MoonIcon/> Switch to Dark</>}
+          </button>
+        </div>
+      )}
 
       <section className={`px-[6%] py-[90px] ${dark ? 'bg-[#080618]' : 'bg-gray-50'}`}>
         <div className="max-w-[800px] mx-auto">
           <div className="text-center mb-14">
             <h2 className={`font-roboto font-extrabold text-[clamp(28px,3vw,42px)] mb-3.5 ${dark ? 'text-white' : 'text-gray-800'} text-center`}>Meet Our Directors</h2>
             <div className="w-12 h-[3.5px] bg-[#7F77DD] rounded mx-auto mb-4.5" />
-            <p className={`max-w-[540px] mx-auto leading-relaxed text-base ${dark ? 'text-[#6b688a]' : 'text-gray-600'}`}>Meet the talented team behind Univeons EdTech Pvt Ltd.</p>
+            <p className={`max-w-[540px] mx-auto leading-relaxed text-base ${dark ? 'text-[#6b688a]' : 'text-gray-600'}`}>Meet the talented team behind EdTech Pvt Ltd.</p>
           </div>
 
           <div className="flex flex-col gap-6">
@@ -86,10 +108,8 @@ export default function Members() {
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
             <div className="hidden sm:block">
-              <div className="flex items-center gap-2.5 mb-4">
-                <img src={dark ? "/images/logos.png" : "/images/logo.png"} alt="Logo" className="h-8 w-auto" />
-              </div>
-              <p className={`leading-relaxed text-sm ${dark ? 'text-gray-300' : 'text-gray-600'}`}>Univeons EdTech Pvt Ltd</p>
+
+               <p className={`leading-relaxed text-sm ${dark ? 'text-gray-300' : 'text-gray-600'}`}>EdTech Pvt Ltd</p>
             </div>
             <div className="sm:col-start-2">
               <h4 className={`text-sm font-bold mb-5 font-roboto ${dark ? 'text-white' : 'text-gray-700'}`}>Quick Links</h4>
@@ -111,7 +131,7 @@ export default function Members() {
             </div>
           </div>
           <div className={`border-t py-5 text-center ${dark ? 'border-[#2d2760]' : 'border-gray-300'}`}>
-            <p className={`text-[13px] ${dark ? 'text-gray-400' : 'text-gray-500'}`}>© 2026 Univeons EdTech Pvt Ltd — All Rights Reserved.</p>
+             <p className={`text-[13px] ${dark ? 'text-gray-400' : 'text-gray-500'}`}>© 2026 EdTech Pvt Ltd — All Rights Reserved.</p>
               <a href="/admin" className={`text-[11px] mt-2 inline-block opacity-40 hover:opacity-100 ${dark ? 'text-gray-400' : 'text-gray-500'}`}>Admin</a>
           </div>
         </div>
